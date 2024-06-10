@@ -34,5 +34,17 @@ namespace KursProject.ModelView
             db.Students.Load();
             StudentList = db.Students.Local.ToObservableCollection();
         }
+        private RelayCommand addCommand;
+        public RelayCommand AddCommand
+        {
+            get
+            {
+                return addCommand ??
+                    (addCommand = new RelayCommand(obj =>
+                    {
+                        
+                    }));
+            }
+        }
     }
 }
