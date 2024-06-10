@@ -6,15 +6,13 @@ using System.Runtime.CompilerServices;
 
 namespace KursProject.Model;
 
-public partial class Student: INotifyPropertyChanged
+public partial class Student: BaseClass
 {
     [Key]
     public int StudentId { get; set; }
     
-
-    public event PropertyChangedEventHandler? PropertyChanged;
-    private string surname;
-    public string Surname
+    private string? surname;
+    public string? Surname
     {
         get { return surname; }
         set
@@ -24,17 +22,70 @@ public partial class Student: INotifyPropertyChanged
         }
     }
 
-    public string Name { get; set; } = null!;
+    private string? name;
+    public string? Name 
+    {
+        get { return name; }
+        set 
+        {
+            name = value;
+            OnPropertyChanged("Name");
+        } 
+    }
 
-    public int Stipend { get; set; }
+    private int stipend;
+    public int Stipend 
+    {
+        get { return stipend; }
+        set
+        {
+            stipend = value;
+            OnPropertyChanged("Stipend");
+        }
+    }
 
-    public int Kurs { get; set; }
+    private int kurs;
+    public int Kurs 
+    {
+        get { return kurs; }
+        set
+        {
+            kurs = value;
+            OnPropertyChanged("Kurs");
+        }
+    }
 
-    public string? City { get; set; }
+    private string? city;
+    public string? City 
+    { get { return city; }
+      set 
+        {
+            city = value;
+            OnPropertyChanged("City");
+        } 
+    }
 
-    public string? BirthDay { get; set; }
+    private string? birthDay;
+    public string? BirthDay 
+    {
+        get { return birthDay; }
+        set
+        {
+            birthDay = value;
+            OnPropertyChanged("BirthDay");
+        } 
+    }
 
-    public int UnivId { get; set; }
+    private int univId;
+    public int UnivId 
+    { 
+        get { return univId; } 
+        set 
+        {
+            univId = value;
+            OnPropertyChanged("UnivId");
+        }
+    }
 
     public virtual ICollection<ExamMark> ExamMarks { get; set; } = new List<ExamMark>();
 

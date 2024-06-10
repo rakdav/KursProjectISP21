@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace KursProject.Model
 {
-    class BaseClass : INotifyPropertyChanged
+    public class BaseClass : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler? PropertyChanged;
         public void OnPropertyChanged([CallerMemberName] string prop = "")
