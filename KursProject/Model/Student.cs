@@ -1,13 +1,28 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
+using System.Runtime.CompilerServices;
 
 namespace KursProject.Model;
 
-public partial class Student
+public partial class Student: INotifyPropertyChanged
 {
+    [Key]
     public int StudentId { get; set; }
+    
 
-    public string Surname { get; set; } = null!;
+    public event PropertyChangedEventHandler? PropertyChanged;
+    private string surname;
+    public string Surname
+    {
+        get { return surname; }
+        set
+        {
+            surname = value;
+            OnPropertyChanged("Surname");
+        }
+    }
 
     public string Name { get; set; } = null!;
 
