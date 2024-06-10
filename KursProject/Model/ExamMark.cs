@@ -4,7 +4,7 @@ using System.ComponentModel;
 
 namespace KursProject.Model;
 
-public partial class ExamMark: INotifyPropertyChanged
+public partial class ExamMark: BaseClass
 {
     public int ExamId { get; set; }
 
@@ -20,5 +20,4 @@ public partial class ExamMark: INotifyPropertyChanged
 
     public virtual Subject Subj { get; set; } = null!;
 
-    public event PropertyChangedEventHandler? PropertyChanged;
 }
