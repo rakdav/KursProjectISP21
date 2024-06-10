@@ -5,14 +5,21 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:KursProject.View"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="450" d:DesignWidth="700"
       Title="Студенты">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="10*"/>
             <ColumnDefinition Width="2*"/>
         </Grid.ColumnDefinitions>
-        <StackPanel Grid.Column="0" Margin="10"/>
-        <Button Content="Добавить" Grid.Column="1" Margin="10 10 10 400"/>
+        <StackPanel Grid.Column="0" Margin="10" x:Name="StudentContainer"/>
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Button Content="Добавить" Grid.Column="0" Margin="10 50"/>
+        </Grid>
+     
     </Grid>
 </Page>

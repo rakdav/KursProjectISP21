@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:KursProject"
         mc:Ignorable="d"
-        Title="Курсовая работа Студенты" Height="450" Width="800">
+        Title="Курсовая работа Студенты" Height="800" Width="1200">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="2*"/>
@@ -20,7 +20,7 @@
                 <RowDefinition/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
-            <Button Grid.Row="0" Margin="15" Background="Green">Студенты</Button>
+            <Button Grid.Row="0" Margin="15" Background="Green" Click="Button_Click" >Студенты</Button>
         </Grid>
         <Frame x:Name="FrameContainer" Grid.Column="1"/>
     </Grid>

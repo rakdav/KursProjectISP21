@@ -14,7 +14,7 @@ namespace KursProject.ModelView
     class StudentViewModel : BaseClass
     {
         UchebContext db = new UchebContext();
-        private StudentPage? studentPage;
+        private AddEditSttudent? studentPage;
         public ObservableCollection<Student>? StudentList { get; set; }
 
         private Student? selectedStudent;
@@ -27,7 +27,7 @@ namespace KursProject.ModelView
                 OnPropertyChanged("SelectedStudent");
             }
         }
-        public StudentViewModel(StudentPage page)
+        public StudentViewModel(AddEditSttudent page)
         {
             this.studentPage = page;
             db.Database.EnsureCreated();
@@ -42,7 +42,7 @@ namespace KursProject.ModelView
                 return addCommand ??
                     (addCommand = new RelayCommand(obj =>
                     {
-                        
+                        AddEditSttudent window = new AddEditSttudent();
                     }));
             }
         }

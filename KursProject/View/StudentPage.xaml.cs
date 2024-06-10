@@ -1,4 +1,6 @@
-﻿using System;
+﻿using KursProject.Model;
+using KursProject.ModelView;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;

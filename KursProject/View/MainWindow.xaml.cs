@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using KursProject.View;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -19,6 +20,11 @@ namespace KursProject
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            FrameContainer.Navigate(new StudentPage());
         }
     }
 }
