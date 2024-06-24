@@ -17,8 +17,8 @@ public partial class Student: BaseClass
         get { return surname; }
         set
         {
-            surname = value;
-            OnPropertyChanged("Surname");
+            if(value==surname) surname = value;
+            OnPropertyChanged(nameof(Surname));
         }
     }
 
@@ -28,8 +28,8 @@ public partial class Student: BaseClass
         get { return name; }
         set 
         {
-            name = value;
-            OnPropertyChanged("Name");
+            if(value==name) name = value;
+            OnPropertyChanged(nameof(Name));
         } 
     }
 
@@ -39,8 +39,8 @@ public partial class Student: BaseClass
         get { return stipend; }
         set
         {
-            stipend = value;
-            OnPropertyChanged("Stipend");
+            if(value==stipend) stipend = value;
+            OnPropertyChanged(nameof(Stipend));
         }
     }
 
@@ -50,8 +50,8 @@ public partial class Student: BaseClass
         get { return kurs; }
         set
         {
-            kurs = value;
-            OnPropertyChanged("Kurs");
+            if(value==kurs) kurs = value;
+            OnPropertyChanged(nameof(Kurs));
         }
     }
 
@@ -60,8 +60,8 @@ public partial class Student: BaseClass
     { get { return city; }
       set 
         {
-            city = value;
-            OnPropertyChanged("City");
+            if(value==city) city = value;
+            OnPropertyChanged(nameof(city));
         } 
     }
 
@@ -71,8 +71,8 @@ public partial class Student: BaseClass
         get { return birthDay; }
         set
         {
-            birthDay = value;
-            OnPropertyChanged("BirthDay");
+            if(birthDay==value) birthDay = value;
+            OnPropertyChanged(nameof(BirthDay));
         } 
     }
 
@@ -82,8 +82,8 @@ public partial class Student: BaseClass
         get { return univId; } 
         set 
         {
-            univId = value;
-            OnPropertyChanged("UnivId");
+            if(value==univId) univId = value;
+            OnPropertyChanged(nameof(UnivId));
         }
     }
 

@@ -11,10 +11,9 @@ using System.Threading.Tasks;
 
 namespace KursProject.ModelView
 {
-    class StudentViewModel : BaseClass
+    class StudentPageViewModel : BaseClass
     {
         UchebContext db = new UchebContext();
-        private AddEditSttudent? studentPage;
         public ObservableCollection<Student>? StudentList { get; set; }
 
         private Student? selectedStudent;
@@ -27,13 +26,7 @@ namespace KursProject.ModelView
                 OnPropertyChanged("SelectedStudent");
             }
         }
-        public StudentViewModel(AddEditSttudent page)
-        {
-            this.studentPage = page;
-            db.Database.EnsureCreated();
-            db.Students.Load();
-            StudentList = db.Students.Local.ToObservableCollection();
-        }
+
         private RelayCommand addCommand;
         public RelayCommand AddCommand
         {
@@ -43,6 +36,7 @@ namespace KursProject.ModelView
                     (addCommand = new RelayCommand(obj =>
                     {
                         AddEditSttudent window = new AddEditSttudent();
+                        window.Show();
                     }));
             }
         }

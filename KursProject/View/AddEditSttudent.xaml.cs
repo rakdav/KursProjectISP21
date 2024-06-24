@@ -23,7 +23,6 @@ namespace KursProject.View
         public AddEditSttudent()
         {
             InitializeComponent();
-            DataContext = new StudentViewModel(this);
         }
     }
 }

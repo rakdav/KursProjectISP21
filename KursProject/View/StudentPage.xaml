@@ -18,7 +18,7 @@
                 <RowDefinition/>
                 <RowDefinition/>
             </Grid.RowDefinitions>
-            <Button Content="Добавить" Grid.Column="0" Margin="10 50"/>
+            <Button Content="Добавить" Command="{Binding AddCommand}" Grid.Column="0" Margin="10 50"/>
         </Grid>
      
     </Grid>
