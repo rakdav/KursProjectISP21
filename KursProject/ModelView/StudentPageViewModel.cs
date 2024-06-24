@@ -92,7 +92,7 @@ namespace KursProject.ModelView
             get
             {
                 return deleteCommand ??
-                  (deleteCommand = new RelayCommand((selectedItem) =>
+                  (deleteCommand = new RelayCommand(selectedItem =>
                   {
                       // получаем выделенный объект
                       Student? student = selectedItem as Student;
