@@ -17,17 +17,17 @@
             <RowDefinition/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <StackPanel Orientation="Vertical" Grid.Row="0">
+        <StackPanel DataContext="{Binding Student}" Orientation="Vertical" Grid.Row="0">
             <Label Content="Введите фамилию студента" Margin="10 0"/>
-            <TextBox x:Name="Surname" Margin="10 0" FontSize="16" />
+            <TextBox x:Name="Surname" Margin="10 0" FontSize="16" Text="{Binding Path=Surname}" />
         </StackPanel>
         <StackPanel Orientation="Vertical" Grid.Row="1">
             <Label Content="Введите имя студента" Margin="10 0"/>
-            <TextBox x:Name="Name" Margin="10 0" FontSize="16"/>
+            <TextBox x:Name="Name" Margin="10 0" FontSize="16" Text="{Binding Path=Name}"/>
         </StackPanel>
         <StackPanel Orientation="Vertical" Grid.Row="2">
             <Label Content="Введите размер стипендии" Margin="10 0"/>
-            <TextBox x:Name="Stipend" Margin="10 0" FontSize="16"/>
+            <TextBox x:Name="Stipend" Margin="10 0" FontSize="16" Text="{Binding Path=Stipend}"/>
         </StackPanel>
         <StackPanel Orientation="Vertical" Grid.Row="3">
             <Label Content="Выберите курс обучения" Margin="10 0"/>
@@ -39,18 +39,19 @@
                 <TextBlock>5</TextBlock>
             </ComboBox>
         </StackPanel>
-        <StackPanel Orientation="Vertical" Grid.Row="4">
+        <StackPanel  Orientation="Vertical" Grid.Row="4">
             <Label Content="Введите город студента" Margin="10 0"/>
-            <TextBox x:Name="City" Margin="10 0" FontSize="16"/>
+            <TextBox x:Name="City" Margin="10 0" FontSize="16" Text="{Binding Path=City}"/>
         </StackPanel>
         <StackPanel Orientation="Vertical" Grid.Row="5">
             <Label Content="Выберите день рождения студента" Margin="10 0"/>
-            <TextBox x:Name="Birthday" Margin="10 0" FontSize="16"/>
+            <DatePicker x:Name="Birthday" Margin="10 0" FontSize="16" Text="{Binding Path=BirthDay}"/>
         </StackPanel>
         <StackPanel Orientation="Vertical" Grid.Row="6">
             <Label Content="Выберите университ студента" Margin="10 0"/>
             <ComboBox x:Name="UnivId" Margin="10 0" FontSize="16" 
-                      ItemsSource="{Binding Universities}" DisplayMemberPath="UnivName"/>
+                      ItemsSource="{Binding Path=Universities}" DisplayMemberPath="UnivName"
+                      SelectedValuePath="UnivId"/>
         </StackPanel>
         <Grid Grid.Row="7">
             <Grid.ColumnDefinitions>
@@ -58,7 +59,8 @@
                 <ColumnDefinition Width="143*"/>
                 <ColumnDefinition Width="200*"/>
             </Grid.ColumnDefinitions>
-            <Button Content="Сохранить" Margin="20,10,20,10" Grid.Column="0" Grid.ColumnSpan="2"/>
+            <Button Content="Сохранить" Margin="20,10,20,10" Grid.Column="0" Grid.ColumnSpan="2"
+                    Command="{Binding AddCommand}"/>
             <Button Content="Отмена" Margin="20,10,20,10" Grid.Column="2"/>
         </Grid>
     </Grid>

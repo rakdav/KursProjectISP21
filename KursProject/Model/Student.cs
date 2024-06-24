@@ -17,7 +17,7 @@ public partial class Student: BaseClass
         get { return surname; }
         set
         {
-            if(value==surname) surname = value;
+            surname = value;
             OnPropertyChanged(nameof(Surname));
         }
     }
@@ -28,7 +28,7 @@ public partial class Student: BaseClass
         get { return name; }
         set 
         {
-            if(value==name) name = value;
+            name = value;
             OnPropertyChanged(nameof(Name));
         } 
     }
@@ -39,7 +39,7 @@ public partial class Student: BaseClass
         get { return stipend; }
         set
         {
-            if(value==stipend) stipend = value;
+            stipend = value;
             OnPropertyChanged(nameof(Stipend));
         }
     }
@@ -50,7 +50,7 @@ public partial class Student: BaseClass
         get { return kurs; }
         set
         {
-            if(value==kurs) kurs = value;
+            kurs = value;
             OnPropertyChanged(nameof(Kurs));
         }
     }
@@ -60,7 +60,7 @@ public partial class Student: BaseClass
     { get { return city; }
       set 
         {
-            if(value==city) city = value;
+            city = value;
             OnPropertyChanged(nameof(city));
         } 
     }
@@ -71,7 +71,7 @@ public partial class Student: BaseClass
         get { return birthDay; }
         set
         {
-            if(birthDay==value) birthDay = value;
+            birthDay = value;
             OnPropertyChanged(nameof(BirthDay));
         } 
     }
@@ -82,7 +82,7 @@ public partial class Student: BaseClass
         get { return univId; } 
         set 
         {
-            if(value==univId) univId = value;
+            univId = value;
             OnPropertyChanged(nameof(UnivId));
         }
     }

@@ -13,7 +13,6 @@ namespace KursProject.ModelView
 {
     class StudentPageViewModel : BaseClass
     {
-        UchebContext db = new UchebContext();
         public ObservableCollection<Student>? StudentList { get; set; }
 
         private Student? selectedStudent;
@@ -27,6 +26,15 @@ namespace KursProject.ModelView
             }
         }
 
+        public StudentPageViewModel()
+        {
+            using (UchebContext db = new UchebContext())
+            {
+                db.Students.Load();
+                StudentList = db.Students.Local.ToObservableCollection();
+            }
+        }
+
         private RelayCommand? addCommand;
         public RelayCommand AddCommand
         {
@@ -36,7 +44,7 @@ namespace KursProject.ModelView
                     (addCommand = new RelayCommand(obj =>
                     {
                         AddEditSttudent window = new AddEditSttudent();
-                        window.Show();
+                        window.ShowDialog();
                     }));
             }
         }
