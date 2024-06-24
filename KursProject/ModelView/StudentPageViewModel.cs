@@ -48,5 +48,18 @@ namespace KursProject.ModelView
                     }));
             }
         }
+        private RelayCommand? editCommand;
+        public RelayCommand EditCommand
+        {
+            get
+            {
+                return addCommand ??
+                    (addCommand = new RelayCommand(obj =>
+                    {
+                        AddEditSttudent window = new AddEditSttudent();
+                        window.ShowDialog();
+                    }));
+            }
+        }
     }
 }
