@@ -43,8 +43,17 @@ namespace KursProject.ModelView
                 return addCommand ??
                     (addCommand = new RelayCommand(obj =>
                     {
-                        AddEditSttudent window = new AddEditSttudent();
-                        window.ShowDialog();
+                        AddEditSttudent window = new AddEditSttudent(new Student());
+                        if (window.ShowDialog() == true)
+                        {
+                            using (UchebContext db = new UchebContext())
+                            {
+                                Student student = window.Student;
+                                db.Students.Add(student);
+                                db.SaveChanges();
+                            }
+                        }
+
                     }));
             }
         }
@@ -53,12 +62,47 @@ namespace KursProject.ModelView
         {
             get
             {
-                return addCommand ??
-                    (addCommand = new RelayCommand(obj =>
+                return editCommand ??
+                    (editCommand = new RelayCommand(obj =>
                     {
-                        AddEditSttudent window = new AddEditSttudent();
-                        window.ShowDialog();
+                        Student? student = obj as Student;
+                        if (student == null) return;
+                        AddEditSttudent window = new AddEditSttudent(student!);
+                        if(window.ShowDialog()==true)
+                        {
+                            student.Surname = window.Student.Surname;
+                            student.Name = window.Student.Name;
+                            student.Stipend = window.Student.Stipend;
+                            student.Kurs = window.Student.Kurs;
+                            student.BirthDay = window.Student.BirthDay;
+                            student.City = window.Student.City;
+                            student.UnivId = window.Student.UnivId;
+                            using (UchebContext db = new UchebContext())
+                            {
+                                db.Entry(student).State = EntityState.Modified;
+                                db.SaveChanges();
+                            }
+                        }
                     }));
+            }
+        }
+        RelayCommand? deleteCommand;
+        public RelayCommand DeleteCommand
+        {
+            get
+            {
+                return deleteCommand ??
+                  (deleteCommand = new RelayCommand((selectedItem) =>
+                  {
+                      // получаем выделенный объект
+                      Student? student = selectedItem as Student;
+                      if (student == null) return;
+                      using (UchebContext db = new UchebContext())
+                      {
+                          db.Students.Remove(student);
+                          db.SaveChanges();
+                      }
+                  }));
             }
         }
     }

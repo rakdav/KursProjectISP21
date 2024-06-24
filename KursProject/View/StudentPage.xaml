@@ -8,34 +8,51 @@
       d:DesignHeight="450" d:DesignWidth="700"
       Title="Студенты">
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="10*"/>
-            <ColumnDefinition Width="2*"/>
-        </Grid.ColumnDefinitions>
-        <ListBox Grid.Column="0" Margin="10" x:Name="StudentContainer" 
+        <Grid.RowDefinitions>
+            <RowDefinition Height="8*"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+        <ListBox Grid.Row="0" Margin="10,10,10,10" x:Name="StudentContainer" 
                  ItemsSource="{Binding StudentList}"
-                 SelectedItem="SelectedStudent">
+                 SelectedItem="{Binding SelectedStudent}" Grid.ColumnSpan="2">
             <i:Interaction.Triggers>
                 <i:EventTrigger EventName="MouseDoubleClick">
-                    <i:InvokeCommandAction Command="{Binding EditCommand}" CommandParameter="{Binding SelectedStudent}" />
+                    <i:InvokeCommandAction Command="{Binding EditCommand}"
+                                           CommandParameter="{Binding SelectedStudent}" />
                 </i:EventTrigger>
             </i:Interaction.Triggers>
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <Grid>
-                        <TextBlock Text="{Binding Path=Surname}" FontSize="20"/>
-                        <TextBlock Text="{Binding Path=Name}"/>
+                        <Grid.RowDefinitions>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                            <RowDefinition/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="100"/>
+                            <ColumnDefinition Width="100"/>
+                            <ColumnDefinition Width="50"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Row="0" Grid.Column="0" Text="{Binding Path=Surname}" FontSize="20" TextAlignment="Center"/>
+                        <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding Path=Name}" FontSize="20" TextAlignment="Center"/>
+                        <TextBlock Grid.Row="1" Grid.Column="0" Text="{Binding Path=Kurs}" FontSize="20" TextAlignment="Center"/>
+                        <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding Path=Stipend}" FontSize="20" TextAlignment="Center"/>
+                        <Button Grid.RowSpan="3" Grid.Column="2" Content="Удалить" Command="{Binding DeleteCommand}"
+                                           CommandParameter="{Binding SelectedStudent}"/>
                     </Grid>
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
-        <Grid Grid.Column="1">
-            <Grid.RowDefinitions>
-                <RowDefinition/>
-                <RowDefinition/>
-            </Grid.RowDefinitions>
-            <Button Content="Добавить" Command="{Binding AddCommand}" Grid.Column="0" Margin="10 50"/>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Button Content="Добавить" Command="{Binding AddCommand}" Grid.Row="0" Margin="20 20"/>
         </Grid>
-     
+
     </Grid>
 </Page>
