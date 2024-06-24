@@ -23,11 +23,11 @@ namespace KursProject.ModelView
             set
             {
                 selectedStudent = value;
-                OnPropertyChanged("SelectedStudent");
+                OnPropertyChanged(nameof(SelectedStudent));
             }
         }
 
-        private RelayCommand addCommand;
+        private RelayCommand? addCommand;
         public RelayCommand AddCommand
         {
             get
