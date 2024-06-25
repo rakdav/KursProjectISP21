@@ -23,6 +23,7 @@ namespace KursProject.View
     public partial class AddEditSttudent : Window
     {
         public Student Student { get; private set; }
+
         public AddEditSttudent(Student student)
         {
             InitializeComponent();

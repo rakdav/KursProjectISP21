@@ -4,8 +4,26 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:KursProject.View"
+        xmlns:validation="clr-namespace:KursProject.Validation"
+        xmlns:model="clr-namespace:KursProject.Model"
         mc:Ignorable="d"
         Title="Добавление студента" Height="450" Width="400">
+    <Window.Resources>
+        <model:Student x:Key="StudentInformation"/>
+        <validation:NameValidationRule x:Key="nameValidation" />
+        <validation:OnlyDigitsValidationRule x:Key="onlyDigitsValidation"/>
+        <validation:NotEmpty x:Key="nameEmpty"/>
+        <Style x:Key="textBoxInError" TargetType="{x:Type TextBox}">
+            <Style.Triggers>
+                <Trigger Property="Validation.HasError" Value="true">
+                    <Setter Property="ToolTip" Value="{Binding RelativeSource={x:Static RelativeSource.Self},
+                    Path=(Validation.Errors)/ErrorContent}"/>
+                    <Setter Property="BorderBrush" Value="Red"/>
+                    <Setter Property="BorderThickness" Value="1"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition/>
@@ -19,19 +37,52 @@
         </Grid.RowDefinitions>
         <StackPanel Orientation="Vertical" Grid.Row="0">
             <Label Content="Введите фамилию студента" Margin="10 0"/>
-            <TextBox x:Name="Surname" Margin="10 0" FontSize="16" Text="{Binding Surname}" />
+            <TextBox x:Name="Surname" Margin="10 0" FontSize="16" Style="{StaticResource textBoxInError}"
+                     PreviewLostKeyboardFocus="NameTextBox_PreviewLostKeyboardFocus">
+                <TextBox.Text>
+                    <Binding Path="Surname" Source="{StaticResource StudentInformation}"
+                                ValidatesOnDataErrors="True"
+                                Mode="TwoWay">
+                        <Binding.ValidationRules>
+                            <validation:NameValidationRule />
+                            <validation:NotEmpty/>
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox.Text>
+            </TextBox>
         </StackPanel>
         <StackPanel Orientation="Vertical" Grid.Row="1">
             <Label Content="Введите имя студента" Margin="10 0"/>
-            <TextBox x:Name="Name" Margin="10 0" FontSize="16" Text="{Binding Name}"/>
+            <TextBox x:Name="Name" Margin="10 0" FontSize="16" >
+                <TextBox.Text>
+                    <Binding Path="Name" Source="{StaticResource StudentInformation}"
+                            ValidatesOnDataErrors="True"
+                            UpdateSourceTrigger="PropertyChanged">
+                        <Binding.ValidationRules>
+                            <validation:NameValidationRule />
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox.Text>
+            </TextBox>
         </StackPanel>
         <StackPanel Orientation="Vertical" Grid.Row="2">
             <Label Content="Введите размер стипендии" Margin="10 0"/>
-            <TextBox x:Name="Stipend" Margin="10 0" FontSize="16" Text="{Binding Stipend}"/>
+            <TextBox x:Name="Stipend" Margin="10 0" FontSize="16" >
+                <TextBox.Text>
+                    <Binding Path="Stipend" Source="{StaticResource StudentInformation}"
+                                        ValidatesOnDataErrors="True"
+                                        UpdateSourceTrigger="PropertyChanged">
+                        <Binding.ValidationRules>
+                            <validation:OnlyDigitsValidationRule />
+                        </Binding.ValidationRules>
+                    </Binding>
+
+                </TextBox.Text>
+            </TextBox>
         </StackPanel>
         <StackPanel Orientation="Vertical" Grid.Row="3">
             <Label Content="Выберите курс обучения" Margin="10 0"/>
-            <ComboBox x:Name="Kurs" Margin="10 0" FontSize="16" Text="{Binding Kurs}">
+            <ComboBox x:Name="Kurs" Margin="10 0" FontSize="16">
                 <TextBlock>1</TextBlock>
                 <TextBlock>2</TextBlock>
                 <TextBlock>3</TextBlock>
@@ -41,16 +92,22 @@
         </StackPanel>
         <StackPanel  Orientation="Vertical" Grid.Row="4">
             <Label Content="Введите город студента" Margin="10 0"/>
-            <TextBox x:Name="City" Margin="10 0" FontSize="16" Text="{Binding City}"/>
+            <TextBox x:Name="City" Margin="10 0" FontSize="16" Text="{Binding City,
+                                                                       Mode=TwoWay,
+                                                                       UpdateSourceTrigger=PropertyChanged}"/>
         </StackPanel>
         <StackPanel Orientation="Vertical" Grid.Row="5">
             <Label Content="Выберите день рождения студента" Margin="10 0"/>
-            <DatePicker x:Name="Birthday" Margin="10 0" FontSize="16" SelectedDate="{Binding BirthDay}"/>
+            <DatePicker x:Name="Birthday" Margin="10 0" FontSize="16" SelectedDate="{Binding BirthDay,
+                                                                       UpdateSourceTrigger=PropertyChanged,
+                                                                       ValidatesOnDataErrors=True}"/>
         </StackPanel>
         <StackPanel Orientation="Vertical" Grid.Row="6">
             <Label Content="Выберите университ студента" Margin="10 0"/>
             <ComboBox x:Name="UnivId" Margin="10 0" FontSize="16"
-                      DisplayMemberPath="UnivName" SelectedValue="{Binding UnivId}"
+                      DisplayMemberPath="UnivName" SelectedValue="{Binding UnivId,
+                                                                       UpdateSourceTrigger=PropertyChanged,
+                                                                       ValidatesOnDataErrors=True}"
                       SelectedValuePath="UnivId"/>
         </StackPanel>
         <Grid Grid.Row="7">
@@ -60,7 +117,21 @@
                 <ColumnDefinition Width="200*"/>
             </Grid.ColumnDefinitions>
             <Button Content="Сохранить" Margin="20,10,20,10" Grid.Column="0" Grid.ColumnSpan="2"
-                    Command="{Binding AddCommand}" Click="Button_Click"/>
+                    Click="Button_Click">
+                <Button.Style>
+                    <Style TargetType="Button">
+                        <Setter Property="IsEnabled" Value="False"/>
+                        <Style.Triggers>
+                            <MultiDataTrigger>
+                                <MultiDataTrigger.Conditions>
+                                    <Condition Binding="{Binding Path=(Validation.HasError)}" Value="False"/>
+                                </MultiDataTrigger.Conditions>
+                                <Setter Property="IsEnabled" Value="True"/>
+                            </MultiDataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+            </Button>
             <Button Content="Отмена" Margin="20,10,20,10" Grid.Column="2" Click="Button_Click_1"/>
         </Grid>
     </Grid>

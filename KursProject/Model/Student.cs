@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Runtime.CompilerServices;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace KursProject.Model;
 
@@ -10,7 +11,8 @@ public partial class Student: BaseClass
 {
     [Key]
     public int StudentId { get; set; }
-    
+    private string error = string.Empty;
+    [Required]
     private string? surname;
     public string? Surname
     {
@@ -87,7 +89,8 @@ public partial class Student: BaseClass
         }
     }
 
-    //public virtual ICollection<ExamMark> ExamMarks { get; set; } = new List<ExamMark>();
-
-    //public virtual University Univ { get; set; } = null!;
+    public string Error
+    {
+        get { return error; }
+    }
 }

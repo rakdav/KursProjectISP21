@@ -25,7 +25,7 @@ namespace KursProject.View
         public StudentPage()
         {
             InitializeComponent();
-            DataContext = new StudentPageViewModel(this);
+            DataContext = new StudentPageViewModel();
         }
     }
 }

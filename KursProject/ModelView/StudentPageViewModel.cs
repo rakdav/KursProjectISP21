@@ -38,12 +38,10 @@ namespace KursProject.ModelView
             }
         }
 
-        public StudentPageViewModel(StudentPage w)
+        public StudentPageViewModel()
         {
-            this.window = w;
-            db.Database.EnsureCreated();
-                db.Students.Load();
-                StudentList = db.Students.Local.ToObservableCollection();
+            db.Students.Load();
+            StudentList = db.Students.Local.ToObservableCollection();
         }
 
         private RelayCommand? addCommand;
