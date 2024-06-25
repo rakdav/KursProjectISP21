@@ -47,9 +47,6 @@ public partial class UchebContext : DbContext
             entity.Property(e => e.StudentId).HasColumnName("STUDENT_ID");
             entity.Property(e => e.SubjId).HasColumnName("SUBJ_ID");
 
-            entity.HasOne(d => d.Student).WithMany(p => p.ExamMarks).HasForeignKey(d => d.StudentId);
-
-            entity.HasOne(d => d.Subj).WithMany(p => p.ExamMarks).HasForeignKey(d => d.SubjId);
         });
 
         modelBuilder.Entity<Lecturer>(entity =>
@@ -62,7 +59,6 @@ public partial class UchebContext : DbContext
             entity.Property(e => e.Surname).HasColumnName("SURNAME");
             entity.Property(e => e.UnivId).HasColumnName("UNIV_ID");
 
-            entity.HasOne(d => d.Univ).WithMany(p => p.Lecturers).HasForeignKey(d => d.UnivId);
         });
 
         modelBuilder.Entity<Student>(entity =>
@@ -78,7 +74,7 @@ public partial class UchebContext : DbContext
             entity.Property(e => e.Surname).HasColumnName("surname");
             entity.Property(e => e.UnivId).HasColumnName("univ_id");
 
-            entity.HasOne(d => d.Univ).WithMany(p => p.Students).HasForeignKey(d => d.UnivId);
+            //     entity.HasOne(d => d.Univ).WithMany(p => p.Students).HasForeignKey(d => d.UnivId);
         });
 
         modelBuilder.Entity<SubjLect>(entity =>
@@ -90,11 +86,6 @@ public partial class UchebContext : DbContext
             entity.Property(e => e.LecturerId).HasColumnName("LECTURER _ID");
             entity.Property(e => e.SubjId).HasColumnName("SUBJ_ID");
 
-            entity.HasOne(d => d.Lecturer).WithMany()
-                .HasForeignKey(d => d.LecturerId)
-                .OnDelete(DeleteBehavior.ClientSetNull);
-
-            entity.HasOne(d => d.Subj).WithMany().HasForeignKey(d => d.SubjId);
         });
 
         modelBuilder.Entity<Subject>(entity =>

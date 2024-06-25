@@ -1,6 +1,4 @@
-﻿using KursProject.Model;
-using KursProject.ModelView;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,14 +16,13 @@ using System.Windows.Shapes;
 namespace KursProject.View
 {
     /// <summary>
-    /// Логика взаимодействия для StudentPage.xaml
+    /// Логика взаимодействия для MainViewPage.xaml
     /// </summary>
-    public partial class StudentPage : Page
+    public partial class MainViewPage : Page
     {
-        public StudentPage()
+        public MainViewPage()
         {
             InitializeComponent();
-            DataContext = new StudentPageViewModel(this);
         }
     }
 }

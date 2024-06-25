@@ -26,5 +26,10 @@ namespace KursProject
         {
             FrameContainer.Navigate(new StudentPage());
         }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            FrameContainer.Navigate(new MainViewPage());
+        }
     }
 }

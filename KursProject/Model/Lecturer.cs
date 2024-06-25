@@ -1,19 +1,54 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Xml.Linq;
 
 namespace KursProject.Model;
 
-public partial class Lecturer
+public partial class Lecturer:BaseClass
 {
+    [Key]
     public int LecturerId { get; set; }
 
-    public string Surname { get; set; } = null!;
+    private string? surname;
+    public string? Surname {
+        get { return surname; }
+        set
+        {
+            surname = value;
+            OnPropertyChanged(nameof(Surname));
+        }
+    }
 
-    public string Name { get; set; } = null!;
+    private string? name;
+    public string? Name 
+    {
+        get { return name; }
+        set
+        {
+            name = value;
+            OnPropertyChanged(nameof(Name));
+        }
+    }
 
-    public string City { get; set; } = null!;
-
-    public int UnivId { get; set; }
-
-    public virtual University Univ { get; set; } = null!;
+    private string? city;
+    public string? City 
+    {
+        get { return city; }
+        set
+        {
+            city = value;
+            OnPropertyChanged(nameof(city));
+        }
+    }
+    public int univId;
+    public int UnivId 
+    {
+        get { return univId; }
+        set
+        {
+            univId = value;
+            OnPropertyChanged(nameof(UnivId));
+        }
+    }
 }

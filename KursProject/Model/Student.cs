@@ -87,7 +87,7 @@ public partial class Student: BaseClass
         }
     }
 
-    public virtual ICollection<ExamMark> ExamMarks { get; set; } = new List<ExamMark>();
+    //public virtual ICollection<ExamMark> ExamMarks { get; set; } = new List<ExamMark>();
 
-    public virtual University Univ { get; set; } = null!;
+    //public virtual University Univ { get; set; } = null!;
 }

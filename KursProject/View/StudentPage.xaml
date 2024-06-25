@@ -21,6 +21,12 @@
                                            CommandParameter="{Binding SelectedStudent}" />
                 </i:EventTrigger>
             </i:Interaction.Triggers>
+            <ListBox.ContextMenu>
+                <ContextMenu>
+                    <MenuItem Header="Удалить" Command="{Binding DeleteCommand}"
+                   CommandParameter="{Binding SelectedStudent}"></MenuItem>
+                </ContextMenu>
+            </ListBox.ContextMenu>
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <Grid>
@@ -38,8 +44,7 @@
                         <TextBlock Grid.Row="0" Grid.Column="1" Text="{Binding Path=Name}" FontSize="20" TextAlignment="Center"/>
                         <TextBlock Grid.Row="1" Grid.Column="0" Text="{Binding Path=Kurs}" FontSize="20" TextAlignment="Center"/>
                         <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding Path=Stipend}" FontSize="20" TextAlignment="Center"/>
-                        <Button Grid.RowSpan="3" Grid.Column="2" Content="Удалить" Command="{Binding DeleteCommand}"
-                                           CommandParameter="{Binding SelectedStudent}"/>
+                        
                     </Grid>
                 </DataTemplate>
             </ListBox.ItemTemplate>
@@ -51,7 +56,9 @@
                 <ColumnDefinition/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <Button Content="Добавить" Command="{Binding AddCommand}" Grid.Row="0" Margin="20 20"/>
+            <Button Content="Добавить" Command="{Binding AddCommand}" Grid.Row="0" Margin="10"/>
+            <Button Grid.Column="1" Content="Удалить" Command="{Binding DeleteCommand}"
+                   CommandParameter="{Binding ElementName=StudentContainer, Path=SelectedItem}" Margin="10"/>
         </Grid>
 
     </Grid>

@@ -11,9 +11,21 @@ using System.Threading.Tasks;
 
 namespace KursProject.ModelView
 {
-    class StudentPageViewModel : BaseClass
+    class StudentPageViewModel:BaseClass
     {
-        public ObservableCollection<Student>? StudentList { get; set; }
+        UchebContext db = new UchebContext();
+        private ObservableCollection<Student> studentList;
+        public ObservableCollection<Student> StudentList
+        {
+            get { return studentList; }
+            set
+            {
+                studentList = value;
+                OnPropertyChanged(nameof(StudentList));
+            }
+        }
+
+        public StudentPage window;
 
         private Student? selectedStudent;
         public Student? SelectedStudent
@@ -26,13 +38,12 @@ namespace KursProject.ModelView
             }
         }
 
-        public StudentPageViewModel()
+        public StudentPageViewModel(StudentPage w)
         {
-            using (UchebContext db = new UchebContext())
-            {
+            this.window = w;
+            db.Database.EnsureCreated();
                 db.Students.Load();
                 StudentList = db.Students.Local.ToObservableCollection();
-            }
         }
 
         private RelayCommand? addCommand;
@@ -46,14 +57,10 @@ namespace KursProject.ModelView
                         AddEditSttudent window = new AddEditSttudent(new Student());
                         if (window.ShowDialog() == true)
                         {
-                            using (UchebContext db = new UchebContext())
-                            {
-                                Student student = window.Student;
-                                db.Students.Add(student);
-                                db.SaveChanges();
-                            }
+                            Student student = window.Student;
+                            db.Students.Add(student);
+                            db.SaveChanges();
                         }
-
                     }));
             }
         }
@@ -77,11 +84,8 @@ namespace KursProject.ModelView
                             student.BirthDay = window.Student.BirthDay;
                             student.City = window.Student.City;
                             student.UnivId = window.Student.UnivId;
-                            using (UchebContext db = new UchebContext())
-                            {
-                                db.Entry(student).State = EntityState.Modified;
-                                db.SaveChanges();
-                            }
+                            db.Entry(student).State = EntityState.Modified;
+                            db.SaveChanges();
                         }
                     }));
             }
@@ -97,11 +101,8 @@ namespace KursProject.ModelView
                       // получаем выделенный объект
                       Student? student = selectedItem as Student;
                       if (student == null) return;
-                      using (UchebContext db = new UchebContext())
-                      {
-                          db.Students.Remove(student);
-                          db.SaveChanges();
-                      }
+                      db.Students.Remove(student);
+                      db.SaveChanges();
                   }));
             }
         }
