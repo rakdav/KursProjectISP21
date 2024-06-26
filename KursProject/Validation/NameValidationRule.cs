@@ -12,6 +12,7 @@ namespace KursProject.Validation
     {
         public override ValidationResult Validate(object value, CultureInfo cultureInfo)
         {
+            if(value==null) return new ValidationResult(false, "Поле пустое");
             string name = value.ToString()!;
             if (name.All(c => char.IsLetter(c) || c == ' '))
                 return new ValidationResult(true, null);
