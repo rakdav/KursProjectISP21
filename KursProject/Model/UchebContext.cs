@@ -73,8 +73,6 @@ public partial class UchebContext : DbContext
             entity.Property(e => e.Stipend).HasColumnName("stipend");
             entity.Property(e => e.Surname).HasColumnName("surname");
             entity.Property(e => e.UnivId).HasColumnName("univ_id");
-
-            //     entity.HasOne(d => d.Univ).WithMany(p => p.Students).HasForeignKey(d => d.UnivId);
         });
 
         modelBuilder.Entity<SubjLect>(entity =>

@@ -59,7 +59,8 @@
         </Grid.RowDefinitions>
         <TextBlock  Text="Введите фамилию студента" Margin="5 0" Grid.Row="0" Grid.Column="0" VerticalAlignment="Center"/>
         <TextBox x:Name="Surname" Margin="10 0" FontSize="16" Grid.Row="0" Grid.Column="1" 
-                 VerticalAlignment="Center" Validation.ErrorTemplate="{StaticResource ErrorTemplate}"
+                 VerticalAlignment="Center" 
+                 Validation.ErrorTemplate="{StaticResource ErrorTemplate}"
                  Style="{StaticResource InputControlErrors}">
             <TextBox.Text>
                 <Binding Path="Surname" UpdateSourceTrigger="PropertyChanged">
@@ -119,7 +120,8 @@
 
         <TextBlock Text="Введите город студента" Grid.Row="4" Grid.Column="0" VerticalAlignment="Center" Margin="5 0"
                    TextWrapping="WrapWithOverflow"/>
-        <TextBox x:Name="City" Margin="10 0" FontSize="16" Grid.Row="4" Grid.Column="1" VerticalAlignment="Center"
+        <TextBox x:Name="City" Margin="10 0" FontSize="16" Grid.Row="4" 
+                 Grid.Column="1" VerticalAlignment="Center"
          Validation.ErrorTemplate="{StaticResource ErrorTemplate}"  
                  Style="{StaticResource InputControlErrors}">
             <TextBox.Text>

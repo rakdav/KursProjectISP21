@@ -11,7 +11,6 @@ public partial class Student: BaseClass
 {
     [Key]
     public int StudentId { get; set; }
-    private string error = string.Empty;
     [Required]
     private string? surname;
     public string? Surname
@@ -87,10 +86,5 @@ public partial class Student: BaseClass
             univId = value;
             OnPropertyChanged(nameof(UnivId));
         }
-    }
-
-    public string Error
-    {
-        get { return error; }
     }
 }
