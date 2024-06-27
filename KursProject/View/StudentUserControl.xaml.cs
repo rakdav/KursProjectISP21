@@ -1,4 +1,5 @@
-﻿using System;
+﻿using KursProject.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +21,12 @@ namespace KursProject.View
     /// </summary>
     public partial class StudentUserControl : UserControl
     {
-        public StudentUserControl()
+        public Student Student { get; set; }
+        public StudentUserControl(Student student)
         {
             InitializeComponent();
+            Student = student;
+            DataContext = Student;
         }
     }
 }

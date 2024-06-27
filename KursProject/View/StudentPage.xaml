@@ -12,7 +12,7 @@
             <RowDefinition Height="8*"/>
             <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
-        <ListBox Grid.Row="0" Margin="10,10,10,10" x:Name="StudentContainer" 
+        <!--<ListBox Grid.Row="0" Margin="10,10,10,10" x:Name="StudentContainer" 
                  ItemsSource="{Binding StudentList}"
                  SelectedItem="{Binding SelectedStudent}" Grid.ColumnSpan="2">
             <i:Interaction.Triggers>
@@ -48,7 +48,10 @@
                     </Grid>
                 </DataTemplate>
             </ListBox.ItemTemplate>
-        </ListBox>
+        </ListBox>-->
+        <WrapPanel Grid.Row="0" x:Name="StudentContainer">
+            
+        </WrapPanel>
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition/>
@@ -57,8 +60,8 @@
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
             <Button Content="Добавить" Command="{Binding AddCommand}" Grid.Row="0" Margin="10"/>
-            <Button Grid.Column="1" Content="Удалить" Command="{Binding DeleteCommand}"
-                   CommandParameter="{Binding ElementName=StudentContainer, Path=SelectedItem}" Margin="10"/>
+            <!--<Button Grid.Column="1" Content="Удалить" Command="{Binding DeleteCommand}"
+                   CommandParameter="{Binding ElementName=StudentContainer, Path=SelectedItem}" Margin="10"/>-->
         </Grid>
 
     </Grid>

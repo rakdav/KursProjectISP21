@@ -38,10 +38,16 @@ namespace KursProject.ModelView
             }
         }
 
-        public StudentPageViewModel()
+        public StudentPageViewModel(StudentPage w)
         {
+            this.window = w;
             db.Students.Load();
             StudentList = db.Students.Local.ToObservableCollection();
+            foreach(Student student in StudentList)
+            {
+                StudentUserControl suc = new StudentUserControl(student);
+                window.StudentContainer.Children.Add(suc);
+            }
         }
 
         private RelayCommand? addCommand;
