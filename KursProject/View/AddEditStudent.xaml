@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:KursProject.View"
         xmlns:validation="clr-namespace:KursProject.Validation"
         xmlns:model="clr-namespace:KursProject.Model"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
         Title="Добавление студента" Height="450" Width="450">
     <Window.Resources>
@@ -137,6 +138,7 @@
         <TextBlock Text="Выберите день рождения студента" Grid.Row="5" Grid.Column="0" VerticalAlignment="Center"
                    TextWrapping="WrapWithOverflow" Margin="5 0"/>
         <DatePicker x:Name="Birthday" Margin="10 0" FontSize="16" Grid.Row="5" Grid.Column="1" 
+                    materialDesign:HintAssist.Hint="Pick Date" Style="{StaticResource MaterialDesignOutlinedDatePicker}"
                     VerticalAlignment="Center" SelectedDate="{Binding BirthDay,
                                                               UpdateSourceTrigger=PropertyChanged,
                                                               ValidatesOnDataErrors=True}"/>

@@ -43,7 +43,12 @@ namespace KursProject.ModelView
             this.window = w;
             db.Students.Load();
             StudentList = db.Students.Local.ToObservableCollection();
-            foreach(Student student in StudentList)
+            UpdateCards();
+        }
+        public void UpdateCards()
+        {
+            window.StudentContainer.Children.Clear();
+            foreach (Student student in StudentList)
             {
                 StudentUserControl suc = new StudentUserControl(student);
                 window.StudentContainer.Children.Add(suc);
@@ -64,6 +69,7 @@ namespace KursProject.ModelView
                             Student student = window.Student;
                             db.Students.Add(student);
                             db.SaveChanges();
+                            UpdateCards();
                         }
                     }));
             }
@@ -90,6 +96,7 @@ namespace KursProject.ModelView
                             student.UnivId = window.Student.UnivId;
                             db.Entry(student).State = EntityState.Modified;
                             db.SaveChanges();
+                            UpdateCards();
                         }
                     }));
             }
@@ -107,6 +114,7 @@ namespace KursProject.ModelView
                       if (student == null) return;
                       db.Students.Remove(student);
                       db.SaveChanges();
+                      UpdateCards();
                   }));
             }
         }
